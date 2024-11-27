@@ -37,7 +37,11 @@
             messageElement.appendChild(bubble);
             messagesContainer.appendChild(messageElement);
         });
+
+        // Прокрутка вниз
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
+
 
     /**
      * Обработчик отправки сообщения.
@@ -68,11 +72,14 @@
     const toggleChatVisibility = () => {
         isChatVisible = !isChatVisible;
         if (isChatVisible) {
-            chatContainer.style.display = 'flex'; // Показываем чат
-            toggleButton.textContent = 'Скрыть чат'; // Меняем текст на кнопке
+            chatContainer.style.display = 'flex';
+            toggleButton.textContent = 'Скрыть чат';
+
+            // Пересчёт высоты прокрутки
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         } else {
-            chatContainer.style.display = 'none'; // Скрываем чат
-            toggleButton.textContent = 'Открыть чат'; // Меняем текст на кнопке
+            chatContainer.style.display = 'none';
+            toggleButton.textContent = 'Открыть чат';
         }
     };
 
