@@ -7,6 +7,10 @@
     const messagesContainer = document.getElementById('chat-messages');
     const inputField = document.getElementById('chat-input');
     const sendButton = document.getElementById('chat-send-button');
+    const toggleButton = document.getElementById('chat-toggle-button'); // Кнопка для скрытия/показа чата
+
+    // Состояние для управления видимостью чата
+    let isChatVisible = true;
 
     /**
      * Добавляет новое сообщение в историю сообщений.
@@ -24,7 +28,7 @@
      */
     const renderMessages = () => {
         messagesContainer.innerHTML = ''; // Очистка предыдущих сообщений
-        messages.forEach((msg, index) => {
+        messages.forEach((msg) => {
             const messageElement = document.createElement('div');
             messageElement.className = `chat-message ${msg.role}`;
             const bubble = document.createElement('div');
@@ -58,9 +62,24 @@
         }
     };
 
+    /**
+     * Переключает видимость чата.
+     */
+    const toggleChatVisibility = () => {
+        isChatVisible = !isChatVisible;
+        if (isChatVisible) {
+            chatContainer.style.display = 'block'; // Показываем чат
+            toggleButton.textContent = 'Скрыть чат'; // Меняем текст на кнопке
+        } else {
+            chatContainer.style.display = 'none'; // Скрываем чат
+            toggleButton.textContent = 'Открыть чат'; // Меняем текст на кнопке
+        }
+    };
+
     // Обработчики событий
     sendButton.addEventListener('click', handleSend);
     inputField.addEventListener('keydown', handleKeyDown);
+    toggleButton.addEventListener('click', toggleChatVisibility); // Обработчик для кнопки скрытия/показа
 
     // Инициализация чата с приветственным сообщением
     addMessage('Добро пожаловать в чат!', 'assistant');
