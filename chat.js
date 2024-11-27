@@ -68,7 +68,7 @@
     const toggleChatVisibility = () => {
         isChatVisible = !isChatVisible;
         if (isChatVisible) {
-            chatContainer.style.display = 'block'; // Показываем чат
+            chatContainer.style.display = 'flex'; // Показываем чат
             toggleButton.textContent = 'Скрыть чат'; // Меняем текст на кнопке
         } else {
             chatContainer.style.display = 'none'; // Скрываем чат
