@@ -1,15 +1,37 @@
+:root {
+    --backgroundColorSite: #c3bbbb;
+    --backgroundColor: #f9f9f9;
+    --messageAreaBg: #ffffff;
+    --messageShadow: rgba(0, 0, 0, 0.1);
+    --clientBubbleBg: #007bff;
+    --clientBubbleText: #fff;
+    --supportBubbleBg: #e5e5e5;
+    --supportBubbleText: #000;
+    --inputBorder: #ccc;
+    --buttonBg: #007bff;
+    --buttonBgHover: #0056b3;
+    --fontFamily: Arial, sans-serif;
+    --buttonHeight: 5vh;
+    --buttonWidth: 5vw;
+    --buttonMargin: 10px;
+    --chatPrewHeight: 55vh;
+    --chatPrewWidth: 30vw;
+    --buttonOpenRadius: 10%;
+}
+
+
 /* Кнопка для открытия чата */
 .chat-open-button {
     position: fixed;
     bottom: 10px;  /* Отступ от нижнего края */
     right: 20px;
-    margin-bottom: 10px;
+    margin-bottom: var(--buttonMargin);
 }
 
 .chat-open-button button{
-    height: 5vh;
-    width: 5vw;
-    border-radius: 10%;
+    height: var(--buttonHeight);
+    width: var(--buttonWidth);
+    border-radius: var(--buttonOpenRadius);
     overflow: hidden;
     font-size: 90%;
 }
@@ -17,12 +39,12 @@
 /* Стили для мини-чата на странице настроек */
 .preview-chat .chat-container {
     position: fixed;
-    bottom: calc((5vh + 10px * 1.2) + 25px);  /* Увеличен отступ снизу, чтобы чат не перекрывал кнопку */
+    bottom: calc((var(--buttonHeight) + var(--buttonMargin) * 1.2) + 25px);  /* Увеличен отступ снизу, чтобы чат не перекрывал кнопку */
     right: 20px;
-    width: 30vw;
-    height: 55vh;
-    background: #f9f9f9;
-    font-family: Arial, sans-serif;
+    width: var(--chatPrewWidth);
+    height: var(--chatPrewHeight);
+    background: var(--backgroundColor);
+    font-family: var(--fontFamily);
     display: flex;
     flex-direction: column;
     padding: 0.5%;
@@ -37,9 +59,9 @@
     overflow-y: auto;
     margin-bottom: 2%;
     padding: 2%;
-    background: #ffffff;
+    background: var(--messageAreaBg);
     border-radius: 1%;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 5px var(--messageShadow);
     font-size: 1rem; /* Размер шрифта в области сообщений */
 }
 
@@ -56,14 +78,14 @@
 
 /* Сообщения от клиента */
 .preview-chat .chat-message.user .chat-bubble {
-    background: #007bff;
-    color: #fff;
+    background: var(--clientBubbleBg);
+    color: var(--clientBubbleText);
 }
 
 /* Сообщения от поддержки */
 .preview-chat .chat-message.assistant .chat-bubble {
-    background: #e5e5e5;
-    color: #000;
+    background: var(--supportBubbleBg);
+    color: var(--supportBubbleText);
 }
 
 /* Сообщения чата (из второго CSS) */
@@ -71,8 +93,8 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: #f9f9f9;
-    font-family: Arial, sans-serif;
+    background: var(--backgroundColor);
+    font-family: var(--fontFamily);
     display: flex;
     flex-direction: column;
     padding: 0.5%;
@@ -87,10 +109,9 @@
     overflow-y: auto;
     margin-bottom: 2%;
     padding: 2%;
-    background: #ffffff;
+    background: var(--messageAreaBg);
     border-radius: 1%;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-    max-height: 100%; /* Ограничение на рост */
+    box-shadow: inset 0 0 5px var(--messageShadow);
     font-size: 1rem; /* Размер шрифта в области сообщений */
 }
 
@@ -99,17 +120,6 @@
     margin: 2% 0;
     display: flex;
     justify-content: flex-start;
-
-}
-
-.chat-bubble{
-    max-width: 70%;
-    padding: 1em;
-    border-radius: 12px;
-    font-size: 0.9em;
-    line-height: 1.4;
-    word-wrap: break-word;
-    display: inline-block;
 }
 
 .chat-message.user {
@@ -118,14 +128,14 @@
 
 /* Сообщения от клиента */
 .chat-message.user .chat-bubble {
-    background: #007bff;
-    color: #fff;
+    background: var(--clientBubbleBg);
+    color: var(--clientBubbleText);
 }
 
 /* Сообщения от поддержки */
 .chat-message.assistant .chat-bubble {
-    background: #e5e5e5;
-    color: #000;
+    background: var(--supportBubbleBg);
+    color: var(--supportBubbleText);
 }
 
 /* Поле ввода */
@@ -134,7 +144,7 @@
     gap: 1%;
     align-items: center;
     padding: 1%;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--inputBorder);
     height: calc(10%); /* Полоса ввода занимает 10% от высоты чата */
 }
 
@@ -143,7 +153,7 @@
     flex: 1;
     padding: calc(0.5% + 0.5vh); /* Динамический отступ */
     border-radius: 4%;
-    border: 1px solid #ccc;
+    border: 1px solid var(--inputBorder);
     font-size: calc(110.5% + 0.6vh); /* Шрифт зависит от размера чата */
     height: 60%; /* Занимает всю высоту input-area */
     width: calc(10%);
@@ -153,8 +163,8 @@
 .chat-send-button {
     width: calc(15%); /* Кнопка занимает 15% ширины родителя */
     height: 100%; /* Занимает всю высоту input-area */
-    background: #007bff;
-    color: #fff;
+    background: var(--buttonBg);
+    color: var(--clientBubbleText);
     border: none;
     border-radius: 4%;
     cursor: pointer;
@@ -165,7 +175,17 @@
 
 /* Hover для кнопки */
 .chat-send-button:hover {
-    background: #0056b3;
+    background: var(--buttonBgHover);
+}
+
+.chat-bubble{
+    max-width: 70%;
+    padding: 1em;
+    border-radius: 12px;
+    font-size: 0.9em;
+    line-height: 1.4;
+    word-wrap: break-word;
+    display: inline-block;
 }
 
 /* Респонсивность для меньших экранов */
@@ -180,3 +200,6 @@
         font-size: 1.2vh;
     }
 }
+
+
+
