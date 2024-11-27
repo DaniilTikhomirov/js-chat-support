@@ -90,7 +90,6 @@
     background: #ffffff;
     border-radius: 1%;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-    max-height: 100%; /* Ограничение на рост */
     font-size: 1rem; /* Размер шрифта в области сообщений */
 }
 
