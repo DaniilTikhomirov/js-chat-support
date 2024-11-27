@@ -79,33 +79,33 @@
     align-items: center;
     padding: 1%;
     border-top: 1px solid #ccc;
-    height: calc(10%); /* Полоса ввода занимает 10% от высоты чата */
+    height: 10%; /* Задайте фиксированную высоту для input-area */
+    position: relative;
 }
-
 
 .chat-input {
     flex: 1;
-    padding: calc(0.5% + 0.5vh); /* Динамический отступ */
+    padding: calc(0.5% + 0.5vh); /* Отступы можно оставить динамическими */
     border-radius: 4%;
     border: 1px solid #ccc;
-    font-size: calc(110.5% + 0.6vh); /* Шрифт зависит от размера чата */
-    height: 60%; /* Занимает всю высоту input-area */
-    width: calc(10%);
-
+    font-size: calc(110.5% + 0.6vh);
+    height: 2.5em; /* Установите фиксированную высоту для инпута, чтобы он не изменялся */
+    width: 100%; /* Убедитесь, что инпут занимает всю ширину input-area */
 }
 
 .chat-send-button {
-    width: calc(15%); /* Кнопка занимает 15% ширины родителя */
-    height: 100%; /* Занимает всю высоту input-area */
+    width: 25%; /* Увеличьте ширину кнопки, чтобы она не была слишком маленькой */
+    height: 100%; /* Кнопка должна занимать всю высоту input-area */
     background: #007bff;
     color: #000;
     border: none;
     border-radius: 4%;
     cursor: pointer;
-    font-size: calc(60% + 0.3vh); /* Шрифт кнопки меняется в зависимости от чата */
+    font-size: calc(60% + 0.3vh);
     overflow: hidden;
     transition: background 0.3s;
 }
+
 
 
 .chat-send-button:hover {
