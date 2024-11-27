@@ -1,11 +1,12 @@
+/* Кнопка для открытия чата */
 .chat-open-button {
     position: fixed;
-    bottom: 10px;
+    bottom: 10px;  /* Отступ от нижнего края */
     right: 20px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
-.chat-open-button button {
+.chat-open-button button{
     height: 5vh;
     width: 5vw;
     border-radius: 10%;
@@ -13,9 +14,10 @@
     font-size: 90%;
 }
 
+/* Стили для мини-чата на странице настроек */
 .preview-chat .chat-container {
     position: fixed;
-    bottom: calc((5vh + 10px * 1.2) + 25px);
+    bottom: calc((5vh + 10px * 1.2) + 25px);  /* Увеличен отступ снизу, чтобы чат не перекрывал кнопку */
     right: 20px;
     width: 30vw;
     height: 55vh;
@@ -29,91 +31,132 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Сообщения мини-чата */
 .preview-chat .chat-messages {
     flex: 1;
     overflow-y: auto;
+    margin-bottom: 2%;
     padding: 2%;
     background: #ffffff;
     border-radius: 1%;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
+    font-size: 1rem; /* Размер шрифта в области сообщений */
+}
+
+/* Индивидуальные сообщения мини-чата */
+.preview-chat .chat-message {
     margin: 2% 0;
     display: flex;
-    flex-direction: column; /* Сделаем сообщения вертикальными */
-    gap: 10px; /* Расстояние между сообщениями */
+    justify-content: flex-start;
 }
 
-/* Сообщения пользователя */
+.preview-chat .chat-message.user {
+    justify-content: flex-end;
+}
+
+/* Сообщения от клиента */
 .preview-chat .chat-message.user .chat-bubble {
-    background: #007bff; /* Цвет для сообщений пользователя */
+    background: #007bff;
     color: #fff;
-    align-self: flex-end; /* Выравнивание сообщений пользователя по правому краю */
-}
-
-.preview-chat .chat-message.user{
-    align-self: flex-end;
 }
 
 /* Сообщения от поддержки */
 .preview-chat .chat-message.assistant .chat-bubble {
-    background: #e5e5e5; /* Светлый цвет для сообщений от поддержки */
+    background: #e5e5e5;
     color: #000;
-    align-self: flex-start; /* Выравнивание сообщений поддержки по левому краю */
 }
 
-/* Общие стили для сообщений */
-.chat-bubble {
-    max-width: 70%;
-    padding: 1em;
-    border-radius: 12px;
-    font-size: 0.9em;
-    line-height: 1.4;
-    word-wrap: break-word;
-    display: inline-block;
+/* Сообщения чата (из второго CSS) */
+.chat-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #f9f9f9;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5%;
+    box-sizing: border-box;
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Область сообщений */
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 2%;
+    padding: 2%;
+    background: #ffffff;
+    border-radius: 1%;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem; /* Размер шрифта в области сообщений */
+}
 
+/* Индивидуальные сообщения */
+.chat-message {
+    margin: 2% 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.chat-message.user {
+    justify-content: flex-end;
+}
+
+/* Сообщения от клиента */
+.chat-message.user .chat-bubble {
+    background: #007bff;
+    color: #fff;
+}
+
+/* Сообщения от поддержки */
+.chat-message.assistant .chat-bubble {
+    background: #e5e5e5;
+    color: #000;
+}
+
+/* Поле ввода */
 .chat-input-area {
     display: flex;
     gap: 1%;
     align-items: center;
     padding: 1%;
     border-top: 1px solid #ccc;
-    height: 10%; /* Задайте фиксированную высоту для input-area */
-    position: relative;
+    height: calc(10%); /* Полоса ввода занимает 10% от высоты чата */
 }
 
+/* Инпут поле */
 .chat-input {
     flex: 1;
-    padding: calc(0.5% + 0.5vh); /* Отступы можно оставить динамическими */
+    padding: calc(0.5% + 0.5vh); /* Динамический отступ */
     border-radius: 4%;
     border: 1px solid #ccc;
-    font-size: calc(110.5% + 0.6vh);
-    height: 2.5em; /* Установите фиксированную высоту для инпута, чтобы он не изменялся */
-    width: 100%; /* Убедитесь, что инпут занимает всю ширину input-area */
+    font-size: calc(110.5% + 0.6vh); /* Шрифт зависит от размера чата */
+    height: 60%; /* Занимает всю высоту input-area */
+    width: calc(10%);
 }
 
+/* Кнопка отправки */
 .chat-send-button {
-    width: 25%; /* Увеличьте ширину кнопки, чтобы она не была слишком маленькой */
-    height: 100%; /* Кнопка должна занимать всю высоту input-area */
+    width: calc(15%); /* Кнопка занимает 15% ширины родителя */
+    height: 100%; /* Занимает всю высоту input-area */
     background: #007bff;
-    color: #000;
+    color: #fff;
     border: none;
     border-radius: 4%;
     cursor: pointer;
-    font-size: calc(60% + 0.3vh);
+    font-size: calc(60% + 0.3vh); /* Шрифт кнопки меняется в зависимости от чата */
     overflow: hidden;
     transition: background 0.3s;
 }
 
-
-
+/* Hover для кнопки */
 .chat-send-button:hover {
     background: #0056b3;
 }
 
-
-/* Responsive scaling for smaller screens */
+/* Респонсивность для меньших экранов */
 @media (max-width: 768px) {
     .chat-input {
         padding: 1vh; /* Уменьшаем отступы */
