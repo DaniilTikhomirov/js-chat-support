@@ -90,6 +90,7 @@
     background: #ffffff;
     border-radius: 1%;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    max-height: 100%; /* Ограничение на рост */
     font-size: 1rem; /* Размер шрифта в области сообщений */
 }
 
@@ -99,6 +100,16 @@
     display: flex;
     justify-content: flex-start;
 
+}
+
+.chat-bubble{
+    max-width: 70%;
+    padding: 1em;
+    border-radius: 12px;
+    font-size: 0.9em;
+    line-height: 1.4;
+    word-wrap: break-word;
+    display: inline-block;
 }
 
 .chat-message.user {
