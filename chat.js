@@ -1,5 +1,3 @@
-import axios from "axios"
-
 (function() {
     // Массив сообщений
     let messages = [];
@@ -69,15 +67,26 @@ import axios from "axios"
         const input = inputField.value.trim();
         if (input) {
             addMessage(input, 'user', userId);
-            let answer;
-            answer = await axios.post(`http://localhost:8080/1/${userId}`, {
-                "guestion": input
-            })
 
-            console.log(answer);
+            try {
+                const response = await fetch(`http://localhost:8080/1/${userId}`, {
+                    method: 'POST', // Метод запроса
+                    headers: {
+                        'Content-Type': 'application/json', // Указываем тип данных
+                    },
+                    body: JSON.stringify({
+                        "guestion": input,
+                    }),
+                });
 
-            inputField.value = ''; // Очищаем поле ввода
-            addMessage(answer.data, 'assistant');
+                const data = await response.json(); // Получаем данные ответа
+                console.log(data);
+
+                inputField.value = ''; // Очищаем поле ввода
+                addMessage(data, 'assistant'); // Добавляем ответ ассистента
+            } catch (error) {
+                console.error('Ошибка при отправке запроса:', error);
+            }
         }
     };
 
