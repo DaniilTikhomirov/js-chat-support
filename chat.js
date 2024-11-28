@@ -68,7 +68,9 @@
         if (input) {
             addMessage(input, 'user', userId);
 
+            inputField.value = ''; // Очищаем поле ввода
             try {
+
                 const response = await fetch(`http://localhost:8080/question/ask/1/${userId}`, {
                     method: 'POST', // Метод запроса
                     headers: {
@@ -78,11 +80,9 @@
                         "guestion": input,
                     }),
                 });
-
                 const data = await response.text(); // Получаем данные ответа
-                console.log(data);
 
-                inputField.value = ''; // Очищаем поле ввода
+                console.log(data);
                 addMessage(data, 'assistant'); // Добавляем ответ ассистента
             } catch (error) {
                 console.error('Ошибка при отправке запроса:', error);
