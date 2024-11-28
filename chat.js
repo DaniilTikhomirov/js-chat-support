@@ -1,3 +1,5 @@
+import axios from "axios"
+
 (function() {
     // Массив сообщений
     let messages = [];
@@ -12,13 +14,28 @@
     // Состояние для управления видимостью чата
     let isChatVisible = true;
 
+    // Генерация или получение уникального ID пользователя
+    const userId = localStorage.getItem('userId') || generateUniqueId();
+    localStorage.setItem('userId', userId);
+
+    /**
+     * Генерирует уникальный идентификатор для пользователя.
+     * Используем UUID, который можно легко сгенерировать.
+     * @returns {string} - Уникальный идентификатор.
+     */
+    function generateUniqueId() {
+        // Генерация UUID (можно использовать стороннюю библиотеку для генерации UUID, например uuid.js)
+        return 'user-' + Math.random().toString(36).substr(2, 9);
+    }
+
     /**
      * Добавляет новое сообщение в историю сообщений.
      * @param {string} content - Текст сообщения.
      * @param {string} role - Роль отправителя (user или assistant).
+     * @param id
      */
-    const addMessage = (content, role = "user") => {
-        const message = { role, content };
+    const addMessage = (content, role = "user", id) => {
+        const message = { id: id, role, content }; // Использование userId + индекс
         messages.push(message);
         renderMessages();
     };
@@ -31,6 +48,8 @@
         messages.forEach((msg) => {
             const messageElement = document.createElement('div');
             messageElement.className = `chat-message ${msg.role}`;
+            messageElement.setAttribute('data-id', msg.id); // Добавление ID в атрибут
+
             const bubble = document.createElement('div');
             bubble.className = 'chat-bubble';
             bubble.textContent = msg.content;
@@ -42,17 +61,23 @@
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
 
-
     /**
      * Обработчик отправки сообщения.
      * Отправляется сообщение пользователя и имитируется ответ ассистента.
      */
-    const handleSend = () => {
+    const handleSend = async () => {
         const input = inputField.value.trim();
         if (input) {
-            addMessage(input, 'user');
+            addMessage(input, 'user', userId);
+            let answer;
+            answer = await axios.post(`http://localhost:8080/1/${userId}`, {
+                "guestion": input
+            })
+
+            console.log(answer);
+
             inputField.value = ''; // Очищаем поле ввода
-            setTimeout(() => addMessage('Спасибо за ваше сообщение!', 'assistant'), 1000); // Ответ ассистента через 1 сек
+            addMessage(answer.data, 'assistant');
         }
     };
 
