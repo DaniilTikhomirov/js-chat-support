@@ -17,6 +17,7 @@
     --chatPrewHeight: 55vh;
     --chatPrewWidth: 30vw;
     --buttonOpenRadius: 10%;
+    --buttonUrl: none
 }
 
 
@@ -34,6 +35,9 @@
     border-radius: var(--buttonOpenRadius);
     overflow: hidden;
     font-size: 90%;
+    background-image: var(--buttonUrl);
+    background-size: cover;
+    background-position: center;
 }
 
 /* Стили для мини-чата на странице настроек */
