@@ -154,7 +154,7 @@
     padding: calc(0.5% + 0.5vh);
     border: 1px solid var(--inputBorder);
     font-size: calc(110.5% + 0.6vh);
-    height: 90%;
+    height: 80%;
     background-color: #fff;
     transition: box-shadow 0.3s ease;
     border-radius: 10px;
