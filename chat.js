@@ -69,7 +69,7 @@
             addMessage(input, 'user', userId);
 
             try {
-                const response = await fetch(`http://localhost:8080/1/${userId}`, {
+                const response = await fetch(`http://localhost:8080/question/ask/1/${userId}`, {
                     method: 'POST', // Метод запроса
                     headers: {
                         'Content-Type': 'application/json', // Указываем тип данных
@@ -79,7 +79,7 @@
                     }),
                 });
 
-                const data = await response.json(); // Получаем данные ответа
+                const data = await response.text(); // Получаем данные ответа
                 console.log(data);
 
                 inputField.value = ''; // Очищаем поле ввода
